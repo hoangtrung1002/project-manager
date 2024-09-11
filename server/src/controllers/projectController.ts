@@ -14,7 +14,7 @@ export const getProjects = async (
     res.status(500).json({ message: "Error retrieving projects" });
   }
 };
-export const createProjects = async (
+export const createProject = async (
   req: Request,
   res: Response
 ): Promise<void> => {
