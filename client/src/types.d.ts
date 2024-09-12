@@ -44,9 +44,9 @@ interface Task {
   description?: string;
   status?: Status;
   priority?: Priority;
-  tags?: number;
-  startDate?: number;
-  dueDate?: number;
+  tags?: string;
+  startDate?: string;
+  dueDate?: string;
   points?: number;
   projectId?: number;
   authorUserId?: number;
