@@ -1,3 +1,4 @@
+import { Project, Task } from "@/types";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const api = createApi({
@@ -24,6 +25,14 @@ export const api = createApi({
           ? result.map(({ id }) => ({ type: "Tasks" as const, id }))
           : [{ type: "Tasks" as const }],
     }),
+    createTask: build.mutation<Task, Partial<Task>>({
+      query: (task) => ({
+        url: "tasks",
+        method: "POST",
+        body: task,
+      }),
+      invalidatesTags: ["Tasks"],
+    }),
     updateTaskStatus: build.mutation<Task, { taskId: number; status: string }>({
       query: ({ taskId, status }) => ({
         url: `/tasks/${taskId}/status`,
@@ -41,5 +50,6 @@ export const {
   useGetProjectsQuery,
   useCreateProjectMutation,
   useGetTasksQuery,
+  useCreateTaskMutation,
   useUpdateTaskStatusMutation,
 } = api;

@@ -1,4 +1,4 @@
-interface Project {
+export interface Project {
   id: number;
   name: string;
   description?: string;
@@ -6,7 +6,7 @@ interface Project {
   endDate?: string;
 }
 
-enum Priority {
+export enum Priority {
   Urgent = "Urgent",
   High = "High",
   Medium = "Medium",
@@ -14,14 +14,14 @@ enum Priority {
   Backlog = "Backlog",
 }
 
-enum Status {
+export enum Status {
   Todo = "To Do",
   WorkInProgress = "Work In Progress",
   UnderReview = "Under Review",
   Completed = "Completed",
 }
 
-interface User {
+export interface User {
   userId?: number;
   username: string;
   email: string;
@@ -30,7 +30,7 @@ interface User {
   teamId?: number;
 }
 
-interface Attachment {
+export interface Attachment {
   id: number;
   fileURL: string;
   fileName: string;
@@ -38,7 +38,7 @@ interface Attachment {
   uploadedById: number;
 }
 
-interface Task {
+export interface Task {
   id: number;
   title: string;
   description?: string;
@@ -58,13 +58,13 @@ interface Task {
   attachments?: Attachment[];
 }
 
-interface SearchResults {
+export interface SearchResults {
   tasks?: Task[];
   projects?: Project[];
   users?: User[];
 }
 
-interface Team {
+export interface Team {
   teamId: number;
   teamName: string;
   productOwnerUserId?: number;

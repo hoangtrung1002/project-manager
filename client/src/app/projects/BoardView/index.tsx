@@ -5,6 +5,7 @@ import { DndProvider, useDrag, useDrop } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { format } from "date-fns";
 import Image from "next/image";
+import { Task } from "@/types";
 
 type Props = {
   id: string;
@@ -50,6 +51,10 @@ interface TaskColumnProps {
   moveTask: (taskId: number, toStatus: string) => void;
   setIsModalNewTaskOpen: (isOpen: boolean) => void;
 }
+
+type TaskProps = {
+  task: Task;
+};
 
 const TaskColumn = ({
   status,
@@ -109,17 +114,13 @@ const TaskColumn = ({
       {tasks
         .filter((task) => task.status === status)
         .map((task) => (
-          <Task key={task.id} task={task} />
+          <TaskItem key={task.id} task={task} />
         ))}
     </div>
   );
 };
 
-type TaskProps = {
-  task: Task;
-};
-
-const Task = ({ task }: TaskProps) => {
+const TaskItem = ({ task }: TaskProps) => {
   const [{ isDragging }, drag] = useDrag(() => ({
     type: "task",
     item: { id: task.id },
