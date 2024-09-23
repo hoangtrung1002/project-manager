@@ -5,10 +5,10 @@ import { Priority, Status } from "@/types";
 type Props = {
   isOpen: boolean;
   onClose: () => void;
-  id: string;
+  id?: string | null;
 };
 
-const ModalNewTask = ({ isOpen, onClose, id }: Props) => {
+const ModalNewTask = ({ isOpen, onClose, id = null }: Props) => {
   const {
     title,
     setTitle,
@@ -31,6 +31,8 @@ const ModalNewTask = ({ isOpen, onClose, id }: Props) => {
     isFormValid,
     handleSubmit,
     isLoading,
+    projectId,
+    setProjectId,
   } = useModalNewTask(id);
 
   const selectStyles =
@@ -62,7 +64,6 @@ const ModalNewTask = ({ isOpen, onClose, id }: Props) => {
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
-
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-2">
           <select
             className={selectStyles}
@@ -129,6 +130,15 @@ const ModalNewTask = ({ isOpen, onClose, id }: Props) => {
           value={assignedUserId}
           onChange={(e) => setAssignedUserId(e.target.value)}
         />
+        {id === null && (
+          <input
+            type="text"
+            className={inputStyles}
+            placeholder="ProjectId"
+            value={projectId}
+            onChange={(e) => setProjectId(e.target.value)}
+          />
+        )}
         <button
           type="submit"
           className={`mt-4 flex w-full justify-center rounded-md border border-transparent bg-blue-primary px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 ${!isFormValid() || isLoading ? "cursor-not-allowed opacity-50" : ""}`}
